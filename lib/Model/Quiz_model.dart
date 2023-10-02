@@ -20,7 +20,7 @@ class QuizModel {
   String? correctAnswer;
   dynamic explanation;
   dynamic tip;
-  List<dynamic>? tags;
+  // List<dynamic>? tags;
   dynamic category;
   dynamic difficulty;
 
@@ -34,7 +34,7 @@ class QuizModel {
     this.correctAnswer,
     this.explanation,
     this.tip,
-    this.tags,
+    // this.tags,
     this.category,
     this.difficulty,
   });
@@ -49,7 +49,7 @@ class QuizModel {
         correctAnswer: json["correct_answer"],
         explanation: json["explanation"],
         tip: json["tip"],
-        tags: json["tags"],
+        // tags: json["tags"],
         category: json["category"],
         difficulty: json["difficulty"],
       );
@@ -64,7 +64,7 @@ class QuizModel {
         "correct_answer": correctAnswer,
         "explanation": explanation,
         "tip": tip,
-        "tags": tags,
+        // "tags": tags,
         "category": category,
         "difficulty": difficulty,
       };
