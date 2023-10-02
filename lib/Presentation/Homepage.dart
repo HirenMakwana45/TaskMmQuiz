@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmmquiz/Api/quizget_api.dart';
@@ -11,20 +13,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  QuizModel? _quizModel;
+  List<QuizModel>? _quizModel;
   bool quizdata = true;
 
   @override
   void initState() {
-    QuizApi().apimobileinvitation().then((value) {
+    QuizApi().quizap().then((value) {
       setState(() {
         _quizModel = value;
 
-        print("===== Quiz APi Calling =====");
+        log("===== Quiz APi Calling =====");
+        quizdata = false;
       });
     });
     super.initState();
   }
+
+  //Every time data change thy che value.first ma 1st j ayo to
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +56,9 @@ class _HomePageState extends State<HomePage> {
             ]),
             Flexible(
               child: Swiper(
-                  itemCount: 4,
+                  itemCount: _quizModel!.length,
                   allowImplicitScrolling: true,
-                  index: 2,
+                  // index: 2,
                   layout: SwiperLayout.DEFAULT,
                   itemWidth: 300.0,
                   itemHeight: 400.0,
@@ -100,10 +105,12 @@ class _HomePageState extends State<HomePage> {
                             const SizedBox(
                               height: 30,
                             ),
-                            const Flexible(
-                              child: Row(
-                                children: [Text("Some Data")],
-                              ),
+                            Row(
+                              children: [
+                                Flexible(
+                                    child: Text(
+                                        _quizModel![index].question.toString()))
+                              ],
                             )
                           ],
                         ),

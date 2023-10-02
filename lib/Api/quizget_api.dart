@@ -6,19 +6,16 @@ import 'package:http/http.dart' as http;
 import 'package:taskmmquiz/Model/Quiz_model.dart';
 
 class QuizApi {
-  Future<QuizModel> apimobileinvitation() async {
+  Future<List<QuizModel>> quizap() async {
     var url = Uri.parse(
         'https://quizapi.io/api/v1/questions?apiKey=F9MkiwyCJhWufKoAscZGQwTdNdB4RjzNBO2jEUQQ&category=linux&difficulty=Hard&limit=20');
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json',
     });
-    
-
-    Map<String, dynamic> map = await jsonDecode(response.body);
-
+    // Map<String, dynamic> map = await jsonDecode(response.body);
     print(response.body);
 
-    final data = QuizModel.fromJson(map);
+    final data = quizModelFromJson(response.body);
     return data;
   }
 }
